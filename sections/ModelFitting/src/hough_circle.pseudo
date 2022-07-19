@@ -1,0 +1,7 @@
+Initialize H accumulator to zeros
+For every edge pixel (x,y):
+    For each possible radius value r:
+        For each possible direction t:
+            a = x - r cos(t) // column
+            b = y + r sin(t) // row
+            H[a,b,r] += 1

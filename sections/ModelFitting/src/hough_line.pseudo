@@ -1,0 +1,6 @@
+Initialize H[d,t]=0
+for each edge point (x,y) in the image:
+    for t in range(tmin,tmax):
+        d = x cos(t) - y sin(t)
+        H[d,t]+=1
+Find the value(s) of (d,t) where H[d,t] is maximum

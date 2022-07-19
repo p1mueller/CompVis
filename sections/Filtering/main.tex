@@ -1,0 +1,29 @@
+% !TEX root = ../../CompVis.tex
+\section{Filtering}
+\subsection{Local Filtering}
+\textbf{Convolution:} $(a\star b)[i,j] = \sum_{k,l} a[k,l] b[i-k,j-l]$\hfill \textbf{Sharpening:} $2f(x,y) - LP(f(x,y))$
+
+\subsection{Edge Detection}
+Edges are important features when we look at images.
+Causes of edges: Reflectance changes, depth discontinuity, change of surface, cast shadows
+
+Edges correspond to extrema of derivatives (gradients in 2D).
+$\nabla f = \left[\pderiv{f}{x}, \pderiv{f}{y}\right]$.
+Points in direction of the steepest incline.
+Direction: $\theta = \tan^{-1}(f_y/f_x)$, Magnitude $\lVert{\nabla f}\rVert = \sqrt{f_x^2 + f_y^2}$
+\textbf{Important:} Not all important edges have strong gradients!
+
+\begin{description}
+    \item[Gaussian smoothing filter:] Removes high-frequency components. Values sum to one.
+    \item[Derivative filters:] Contain some negative values. Values sum to 0. Yield large responses at points with high constrast.
+\end{description}
+
+
+\subsubsection{Canny Edge Detector}
+\begin{enumerate}
+    \item Approximate gradients with derivative-of-gaussian filters
+    \item Compute gradient magnitude as $\lVert\nabla f\rVert = \sqrt{f_x^2+f_y^2}$
+    \item Non-maxima suppression along perpendicular direction to edge (thinning)
+    \item Hysteresis Thresholding (Only keep strong edges)
+\end{enumerate}
+\texttt{cimg = skimage.feature.canny(img, sigma,low\_threshold,high\_threshold,mask,use\_quantiles)}

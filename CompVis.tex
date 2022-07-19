@@ -1,0 +1,45 @@
+\documentclass[titlepage=true]{scrartcl}
+
+\input{header/zusammenfassung}
+% \input{header/hyperref}
+
+\input{header/listings}
+\input{header/tikz}
+\usepackage{textgreek}
+\usepackage{paracol}
+\usetikzlibrary{positioning}
+\setDefaultArrayStretch{1.8}
+
+\makeatletter
+
+% Newline after a paragraph
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+	{-3.25ex\@plus -1ex \@minus -.2ex}%
+	{1.5ex \@plus .2ex}%
+	{\normalfont\normalsize\bfseries}}
+\makeatother
+
+\title{Computer Vision}
+\author{\input{Contributors}}
+\begin{document}
+% \begin{titlepage}
+% 	\thispagestyle{empty}
+% 	\maketitle
+% \end{titlepage}
+
+
+\lstset{style=C}
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{5}
+\tableofcontents \newpage
+
+\input{sections/Filtering/main.tex}
+\input{sections/ModelFitting/main.tex}
+\input{sections/ImageClassification/main.tex}
+\input{sections/SemanticSegmentation/main.tex}
+\input{sections/FindingMultipleObjects/main.tex}
+\input{sections/GeneratingImages/main.tex}
+\input{sections/NetworkArchitectures/main.tex}
+\input{sections/Python/main.tex}
+
+\end{document}

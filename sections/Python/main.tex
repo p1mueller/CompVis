@@ -1,0 +1,117 @@
+% !TEX root = ../../CompVis.tex
+\section{Python}
+\small
+\renewcommand{\arraystretch}{1.1}
+\subsection{Matplotlib}
+\begin{tabularx}{\textwidth}{t{8cm} X}
+    \hline
+    plt.colorbar()                                    & Add a colorbar to a plot                                                                                                         \\\hline
+    plt.imshow(img, vmin=0, vmax=1, cmap="gray")      & Plot an image and map the values between 0 and 1 to the colormap gray                                                            \\\hline
+    mpl.patches.Rectangle(upper\_left, width, height) & Draw a rectangle in a plot starting from \texttt{upper\_left} with given height and width                                        \\\hline
+    plt.plot(x,y)                                     & Plot a line with coordinates \texttt{x}, \texttt{y}                                                                              \\\hline
+    plt.subplots(ncols,nrows)                         & Creates a figure with \texttt{ncols} columns and \texttt{nrows} rows. Returns the figure and the axes objects (as a numpy array) \\\hline
+\end{tabularx}
+
+\subsection{scikit-image}
+\begin{tabularx}{\textwidth}{t{8cm} X}
+    \hline
+    skimage.img\_as\_float(img)                                                                        & Makes sure image is floating point in range [0,1]                                                                                                                                                \\\hline
+    skimage.img\_as\_ubyte(img)                                                                        & Makes sure image is uint8 in range [0,255]                                                                                                                                                       \\\hline
+
+    skimage.color.label2rgb(label, image)                                                              & Combines label image and image to image with overlayed labels                                                                                                                                    \\\hline
+    skimage.color.rgb2gray(img)                                                                        & Convert \texttt{img} from RGB to grayscale image                                                                                                                                                 \\\hline
+
+    skimage.feature.canny(img, sigma, low\_thresh, high\_thresh)                                       & Apply canny edge detector on image. Use gaussian prefilter with sigma and use \texttt{low\_thresh} for weak edges and \texttt{high\_tresh} for strong ones                                       \\\hline
+    skimage.feature.graycomatrix(img, distances, angles, levels, symmetric, normed)                    & Calculate graylevel co-occurrence matrix (GLCM). \texttt{distances}=List of pixel pair distance offsets, \texttt{angles}=List of pixel pair angles in radians, \texttt{levels}=max pixel value-1 \\\hline
+    skimage.feature.graycoprops(glcm, prop)                                                            & Calculate texture properties of a GLCM. Available properties are \{'contrast','dissimilarity','homogeneity','ASM','energy','correlation\}.                                                       \\\hline
+    skimage.feature.local\_binary\_pattern(img, P, R, method)                                          & Gray scale and rotation invariant LBP. \texttt{P}=number of circularly symmetric neighbor points, \texttt{R}=radius of circle, available methods=\{'default','ror','uniform','var'\}             \\\hline
+
+    skimage.filters.gaussian(img, sigma)                                                               & Filter image with a gaussian filter with given sigma                                                                                                                                             \\\hline
+    skimage.filters.median(img, selem)                                                                 & Apply median filter with structuring element \texttt{selem} to image.                                                                                                                            \\\hline
+    skimage.filters.sobel(img)                                                                         & Apply Sobel filters along all axis and return magnitude of the estimated gradient                                                                                                                \\\hline
+
+    skimage.future.graph.cut\_normalized(labels, graph, in\_place)                                     & Perform Normalized Graph cut on the Region Adjacency Graph.                                                                                                                                      \\\hline
+    skimage.future.graph.rag\_mean\_color(img, labels, mode)                                           & Compute Region Adjacency Graph using mean colors. \texttt{image}=Original (color) image, \texttt{labels}=segmentation image, available modes=\{'distance','similarity'\}                         \\\hline
+    skimage.future.graph.show\_rag(labels, graph, img)                                                 & Show a Region Adjacency Graph on image                                                                                                                                                           \\\hline
+
+    skimage.transform.hough\_circle(img, radius)                                                       & Transform image to circle hough space with given radii.                                                                                                                                          \\\hline
+    skimage.transform.hough\_circle\_peaks(hspace, radii, min\_x, min\_y, thresh, npeaks)              & Find peaks in hspace. Returns \texttt{npeaks} found in the hspace which are above \texttt{thresh}, have a min $x$ and $y$ distance of \texttt{min\_x} and \texttt{min\_y}.
+    Returns votes, center $x$ and $y$ coordinates  and radii of the found circles.                                                                                                                                                                                                                        \\\hline
+    skimage.transform.hough\_line(img)                                                                 & Transform image to line hough space. Returns hough space, angles and distances.                                                                                                                  \\\hline
+    skimage.transform.hough\_line\_peaks(hspace, angles, dists, min\_dist, min\_angle, thresh, npeaks) & Find peaks in hspace. Returns \texttt{npeaks} found in the hspace which are above \texttt{thresh},
+    have a gap more than \texttt{min\_dist} and have more angle difference than \texttt{min\_angle}. Returns votes, angles, distances of the found lines                                                                                                                                                  \\\hline
+    skimage.transfrom.probabalistic\_hough\_line(\newline img, thresh, length, gap)                    & Perform probabalistic hough transform on image.
+    Only take lines which are above \texttt{threshold}, are longer than \texttt{length} and the gap between pixel is not greater then \texttt{gap}. Returns list of lines identified in format ((x0,y0),(x1,y1))                                                                                          \\\hline
+    skimage.transform.rescale(img, scale)                                                              & Scale image by a certain factor.                                                                                                                                                                 \\\hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{t{8cm} X}
+    \hline
+    skimage.io.imread(path)                                                        & Read image at \texttt{path}                                                                                                                                                   \\\hline
+    skimage.io.imsave(path, img)                                                   & Save \texttt{img} at \texttt{path}                                                                                                                                            \\\hline
+
+    skimage.measure.label(img, background=0, return\_num=False, connectivity=None) & Label connected regions of an integer array.                                                                                                                                  \\\hline
+    skimage.measure.regionprops(labels)                                            & Gives region properties of label image. Properties are \texttt{area}, \texttt{bbox} (min\_r, min\_c, max\_r, max\_c), \texttt{centroid}, \texttt{convex area}, \texttt{label} \\\hline
+
+    skimage.morphology.dilation(img, selem)                                        & Dilate image with structuring element                                                                                                                                         \\\hline
+    skimage.morphology.disk(radius)                                                & Returns an disk approximate with radius=\texttt{radius}                                                                                                                       \\\hline
+    skimage.morphology.erosion(img, selem)                                         & Erode image with structuring element                                                                                                                                          \\\hline
+
+    skimage.preprocessing.normalize(data, axis)                                    & Normalize data along axis                                                                                                                                                     \\\hline
+
+    skimage.segmentation.slic(img, n\_segments, compactness, multichannel)         & Superpixel segmentation (k-means in color-(x,y,z) space)                                                                                                                      \\\hline
+
+    skimage.util.shape.view\_as\_blocks(img, block\_shape)                         & Cuts image into blocks with shape \texttt{block\_shape}                                                                                                                       \\\hline
+    skimage.util.shape.view\_as\_windows(img, window\_shape, step)                 & Sliding window over image with shape \texttt{block\_shape} and step size \texttt{step}                                                                                        \\\hline
+\end{tabularx}
+
+\subsection{scikit-learn}
+All predictors can be fit to the data with \texttt{model.fit(features, labels)} and then predict the labels on new data with \texttt{model.predict(new\_features)}.
+
+\begin{tabularx}{\textwidth}{t{8cm} X}
+    \hline
+    sklearn.cluster.KMeans(n\_clusters)                 & Create a K-Means clusterer. Nice properties are \texttt{cluster\_centers} (Coordinates of cluster centers), \texttt{labels\_} (labels of each point), \texttt{inertia\_} (Sum of squared distances of samples to theri closes cluster center) \\\hline
+
+    sklearn.ensemble.RandomForestClassifier()           & Creates a random forest classifier                                                                                                                                                                                                            \\\hline
+
+    sklearn.metrics.accuracy\_score(y\_true, y\_pred)   & Calculates accuracy between \texttt{y\_true} and \texttt{y\_pred}                                                                                                                                                                             \\\hline
+    sklearn.metrics.confusion\_matrix(y\_true, y\_pred) & Calculates confusion matrix between \texttt{y\_true} and \texttt{y\_pred}                                                                                                                                                                     \\\hline
+
+    sklearn.neighbors.KNeighborsClassifier(K)           & Creates a K-nearest neighbors classifier                                                                                                                                                                                                      \\\hline
+
+    sklearn.svm.LinearSVM()                             & Creates linear SVM.                                                                                                                                                                                                                           \\\hline
+
+    sklearn.tree.DecisionTreeClassifier()               & Creates a decision tree classifier.                                                                                                                                                                                                           \\\hline
+
+    sklearn.utils.shuffle(data, label)                  & Shuffle data and labels                                                                                                                                                                                                                       \\\hline
+\end{tabularx}
+
+\subsection{OpenCV}
+\begin{tabularx}{\textwidth}{t{6cm} X}
+    \hline
+    cv2.integral(img)                                          & Calculate integral image                                                                                                                                                                                                                       \\\hline
+    cv2.pyrMeanShiftFiltering(img, sp, sr, maxlevel, termcrit) & Performs initial step of meanshift segmentation of an image. \texttt{sp}=spatial window radius, \texttt{sr}=color window radius, \texttt{maxlevel}=maximum level of the pyramid for the segmenetation, \texttt{termcrit}=termination criterias \\\hline
+\end{tabularx}
+
+\subsection{Tensorflow}
+
+\begin{tabularx}{\textwidth}{t{9cm} X}
+    \hline
+    model = tf.keras.Sequential() + model.add(layer)                                         & Create sequential model and add new layers to it                    \\\hline
+    model.compile(optimizer, loss, metrics)                                                  & Compile the model with given optimizer, loss(es) und metric(s).     \\\hline
+
+    tf.keras.layers.AveragePooling2D(pool\_size, strides)                                    & Create average pooling layer                                        \\\hline
+    tf.keras.layers.BatchNormalization()                                                     & Create batch normalization layer                                    \\\hline
+    tf.keras.layers.Conv2D(filters, kernel\_size, strides, padding, activation=act)          & Create 2D convolutional layer                                       \\\hline
+    tf.keras.layers.Conv2DTranspose(filters, kernel\_size, strides, padding, activation=act) & Create a transposed 2D convolutional layer                          \\\hline
+    tf.keras.layers.Dropout(prob)                                                            & Create dropout layer                                                \\\hline
+    tf.keras.layers.InputLayer(input\_shape)                                                 & Create input layer. Input shape is \textbf{without} batch dimension \\\hline
+    tf.keras.layers.MaxPooling2D(pool\_size, strides)                                        & Create max pooling layer                                            \\\hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{t{9cm} X}
+    \hline
+    tf.keras.layers.UpSampling1D(size)                   & Create upsampling layer                  \\\hline
+
+    tf.keras.utils.to\_categorical(labels, num\_classes) & Create a one-hot vectors from the labels \\\hline
+\end{tabularx}
